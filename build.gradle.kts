@@ -1,5 +1,6 @@
 plugins {
-    id("java")
+    kotlin("jvm") version "2.0.0"
+    application
 }
 
 group = "com.meter.reading"
@@ -10,10 +11,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(kotlin("test"))
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_22
+    targetCompatibility = JavaVersion.VERSION_22
+}
+
+application {
+    mainClass.set("com.meter.reading.MainKt")
 }
